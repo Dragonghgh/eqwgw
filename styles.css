@@ -1,14 +1,17 @@
+/* Base Styles */
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Arial', sans-serif;
     background-color: #222;
     color: #eee;
     margin: 0;
     padding: 20px;
+    overflow-x: hidden;
 }
 
 #game-container {
     display: flex;
-    max-width: 900px;
+    flex-direction: column;
+    max-width: 1000px;
     margin: 0 auto;
     background-color: #333;
     border-radius: 10px;
@@ -17,66 +20,250 @@ body {
 }
 
 #game-screen {
-    width: 500px;
-    height: 400px;
+    width: 700px;
+    height: 500px;
     background-color: #111;
     position: relative;
     border: 2px solid #444;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+#map {
+    width: 100%;
+    height: 100%;
+    background-image: url('images/grass.png');
+    background-repeat: repeat;
+    position: absolute;
+}
+
+/* Character Styles */
+.character {
+    width: 32px;
+    height: 32px;
+    position: absolute;
+    background-size: contain;
+    background-repeat: no-repeat;
+    transition: all 0.3s ease;
 }
 
 #player {
-    width: 30px;
-    height: 30px;
-    background-color: #3498db;
-    position: absolute;
-    border-radius: 50%;
-    top: 185px;
-    left: 235px;
+    background-image: url('images/player.png');
+    z-index: 10;
 }
 
 .enemy {
-    width: 30px;
-    height: 30px;
-    background-color: #e74c3c;
+    width: 32px;
+    height: 32px;
     position: absolute;
-    border-radius: 50%;
+    background-image: url('images/enemy.png');
+    background-size: contain;
+    z-index: 5;
+}
+
+.npc {
+    width: 32px;
+    height: 32px;
+    position: absolute;
+    background-image: url('images/npc.png');
+    background-size: contain;
+    z-index: 5;
 }
 
 .item {
-    width: 20px;
-    height: 20px;
-    background-color: #f1c40f;
+    width: 24px;
+    height: 24px;
     position: absolute;
-    border-radius: 50%;
+    background-size: contain;
+    z-index: 3;
+}
+
+/* UI Panels */
+#ui-panel {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+#stats-panel, #inventory-panel, #quest-panel {
+    background-color: #252525;
+    padding: 10px;
+    border-radius: 5px;
+    margin: 5px;
+    flex: 1;
 }
 
 #stats-panel {
-    width: 200px;
-    padding: 0 20px;
+    max-width: 200px;
 }
 
+#inventory-items {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.inventory-item {
+    width: 40px;
+    height: 40px;
+    margin: 2px;
+    background-color: #444;
+    border: 1px solid #666;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+/* Action Panel */
 #action-panel {
+    display: flex;
+    flex-direction: column;
     margin-top: 20px;
+}
+
+.action-row {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
 }
 
 button {
     background-color: #444;
     color: white;
     border: none;
-    padding: 8px 15px;
-    margin: 5px;
+    padding: 10px 20px;
+    margin: 0 5px;
     border-radius: 5px;
     cursor: pointer;
+    font-size: 16px;
+    transition: all 0.2s;
 }
 
 button:hover {
     background-color: #555;
+    transform: translateY(-2px);
 }
 
+button:active {
+    transform: translateY(0);
+}
+
+button:disabled {
+    background-color: #333;
+    color: #666;
+    cursor: not-allowed;
+}
+
+/* Message Log */
 #message-log {
     margin-top: 20px;
     height: 100px;
     overflow-y: auto;
     border-top: 1px solid #444;
     padding-top: 10px;
+    background-color: #252525;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+#message-log p {
+    margin: 5px 0;
+    line-height: 1.4;
+}
+
+/* Modal Windows */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 100;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+.modal-content {
+    background-color: #333;
+    margin: 10% auto;
+    padding: 20px;
+    border-radius: 10px;
+    width: 80%;
+    max-width: 600px;
+    max-height: 80vh;
+    overflow-y: auto;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close:hover {
+    color: #fff;
+}
+
+/* Class Selection */
+.class-options {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+}
+
+.class-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 30%;
+    padding: 15px;
+}
+
+.class-btn h3 {
+    margin: 0 0 10px 0;
+    color: #f1c40f;
+}
+
+/* Animations */
+@keyframes shake {
+    0% { transform: translate(0); }
+    20% { transform: translate(-5px, 5px); }
+    40% { transform: translate(5px, -5px); }
+    60% { transform: translate(-5px, -5px); }
+    80% { transform: translate(5px, 5px); }
+    100% { transform: translate(0); }
+}
+
+.shake {
+    animation: shake 0.5s;
+}
+
+@keyframes flash {
+    0% { opacity: 1; }
+    50% { opacity: 0.3; }
+    100% { opacity: 1; }
+}
+
+.flash {
+    animation: flash 0.3s;
+}
+
+/* Responsive Design */
+@media (max-width: 900px) {
+    #game-screen {
+        width: 100%;
+        height: 400px;
+    }
+    
+    #ui-panel {
+        flex-direction: column;
+    }
+    
+    #stats-panel, #inventory-panel, #quest-panel {
+        max-width: 100%;
+        margin-bottom: 10px;
+    }
 }
