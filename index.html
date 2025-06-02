@@ -3,30 +3,107 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simple RPG Game</title>
+    <title>Enhanced RPG Game</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div id="game-container">
         <div id="game-screen">
-            <div id="player"></div>
+            <div id="map"></div>
+            <div id="player" class="character"></div>
             <div id="enemies"></div>
             <div id="items"></div>
+            <div id="npcs"></div>
         </div>
-        <div id="stats-panel">
-            <h2>Player Stats</h2>
-            <p>Health: <span id="health">100</span></p>
-            <p>Level: <span id="level">1</span></p>
-            <p>XP: <span id="xp">0</span>/<span id="next-level">100</span></p>
-            <p>Gold: <span id="gold">10</span></p>
+        
+        <div id="ui-panel">
+            <div id="stats-panel">
+                <h2>Player Stats</h2>
+                <p>Health: <span id="health">100</span>/<span id="max-health">100</span></p>
+                <p>Level: <span id="level">1</span></p>
+                <p>XP: <span id="xp">0</span>/<span id="next-level">100</span></p>
+                <p>Gold: <span id="gold">10</span></p>
+                <p>Class: <span id="class">Adventurer</span></p>
+            </div>
+            
+            <div id="inventory-panel">
+                <h2>Inventory</h2>
+                <div id="inventory-items"></div>
+                <p>Weapon: <span id="equipped-weapon">Basic Sword</span></p>
+                <p>Armor: <span id="equipped-armor">Cloth Tunic</span></p>
+            </div>
+            
+            <div id="quest-panel">
+                <h2>Quests</h2>
+                <div id="active-quests"></div>
+            </div>
         </div>
+        
         <div id="action-panel">
-            <button id="attack-btn">Attack</button>
-            <button id="heal-btn">Heal (10 gold)</button>
-            <button id="explore-btn">Explore</button>
+            <div class="action-row">
+                <button id="attack-btn">Attack</button>
+                <button id="special-btn">Special Attack</button>
+                <button id="heal-btn">Heal (10 gold)</button>
+            </div>
+            <div class="action-row">
+                <button id="explore-btn">Explore</button>
+                <button id="inventory-btn">Inventory</button>
+                <button id="quests-btn">Quests</button>
+            </div>
         </div>
+        
         <div id="message-log"></div>
+        
+        <!-- Modal Windows -->
+        <div id="inventory-modal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h2>Inventory</h2>
+                <div id="inventory-modal-items"></div>
+            </div>
+        </div>
+        
+        <div id="quest-modal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h2>Quest Log</h2>
+                <div id="quest-modal-content"></div>
+            </div>
+        </div>
+        
+        <div id="class-select-modal" class="modal">
+            <div class="modal-content">
+                <h2>Choose Your Class</h2>
+                <div class="class-options">
+                    <button id="warrior-btn" class="class-btn">
+                        <h3>Warrior</h3>
+                        <p>High health and attack</p>
+                    </button>
+                    <button id="mage-btn" class="class-btn">
+                        <h3>Mage</h3>
+                        <p>Powerful special attacks</p>
+                    </button>
+                    <button id="rogue-btn" class="class-btn">
+                        <h3>Rogue</h3>
+                        <p>High crit chance and evasion</p>
+                    </button>
+                </div>
+            </div>
+        </div>
     </div>
+    
+    <audio id="background-music" loop>
+        <source src="sounds/background.mp3" type="audio/mpeg">
+    </audio>
+    
+    <audio id="attack-sound">
+        <source src="sounds/attack.wav" type="audio/wav">
+    </audio>
+    
+    <audio id="heal-sound">
+        <source src="sounds/heal.wav" type="audio/wav">
+    </audio>
+    
     <script src="game.js"></script>
 </body>
 </html>
