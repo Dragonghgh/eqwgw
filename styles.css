@@ -1,0 +1,82 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #222;
+    color: #eee;
+    margin: 0;
+    padding: 20px;
+}
+
+#game-container {
+    display: flex;
+    max-width: 900px;
+    margin: 0 auto;
+    background-color: #333;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+}
+
+#game-screen {
+    width: 500px;
+    height: 400px;
+    background-color: #111;
+    position: relative;
+    border: 2px solid #444;
+}
+
+#player {
+    width: 30px;
+    height: 30px;
+    background-color: #3498db;
+    position: absolute;
+    border-radius: 50%;
+    top: 185px;
+    left: 235px;
+}
+
+.enemy {
+    width: 30px;
+    height: 30px;
+    background-color: #e74c3c;
+    position: absolute;
+    border-radius: 50%;
+}
+
+.item {
+    width: 20px;
+    height: 20px;
+    background-color: #f1c40f;
+    position: absolute;
+    border-radius: 50%;
+}
+
+#stats-panel {
+    width: 200px;
+    padding: 0 20px;
+}
+
+#action-panel {
+    margin-top: 20px;
+}
+
+button {
+    background-color: #444;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    margin: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #555;
+}
+
+#message-log {
+    margin-top: 20px;
+    height: 100px;
+    overflow-y: auto;
+    border-top: 1px solid #444;
+    padding-top: 10px;
+}
